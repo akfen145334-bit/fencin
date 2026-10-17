@@ -7,14 +7,15 @@ import {
   ChevronRight,
   GraduationCap,
   Layers,
-  CheckCircle2,
-  Sparkles,
   PanelLeftClose,
   PanelLeft,
   Globe,
-  ExternalLink
+  ExternalLink,
+  BarChart3
 } from 'lucide-react';
 import { getSpecificEbaLink } from '../utils/ebaLinks';
+import { getCurrentCalendarWeek } from '../utils/annualScheduleUtils';
+import { allGradeSchedules } from '../data/annualCurriculumSchedule';
 
 interface Props {
   units: Unit[];
@@ -26,6 +27,7 @@ interface Props {
   onSelectGrade: (grade: number) => void;
   isOpen: boolean;
   onToggleOpen: () => void;
+  onOpenProgressDashboard?: () => void;
 }
 
 export const CurriculumSidebar: React.FC<Props> = ({
@@ -37,7 +39,8 @@ export const CurriculumSidebar: React.FC<Props> = ({
   onSelectSubTopic,
   onSelectGrade,
   isOpen,
-  onToggleOpen
+  onToggleOpen,
+  onOpenProgressDashboard
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedUnitIds, setExpandedUnitIds] = useState<Record<string, boolean>>({
@@ -48,6 +51,13 @@ export const CurriculumSidebar: React.FC<Props> = ({
   const gradeUnits = useMemo(() => {
     return units.filter(u => (u.grade || 5) === currentGrade);
   }, [units, currentGrade]);
+
+  // Current academic week subtopic for grade
+  const currentCalWeek = getCurrentCalendarWeek();
+  const currentWeekSubTopicId = useMemo(() => {
+    const item = allGradeSchedules[currentGrade]?.find(i => i.weekNumber === currentCalWeek);
+    return item?.subTopicId;
+  }, [currentGrade, currentCalWeek]);
 
   // Keep active unit expanded automatically
   React.useEffect(() => {
@@ -285,8 +295,13 @@ export const CurriculumSidebar: React.FC<Props> = ({
                           </span>
 
                           <div className="flex-1 min-w-0">
-                            <div className="text-xs leading-snug truncate">
-                              {sub.title}
+                            <div className="text-xs leading-snug flex items-center justify-between gap-1">
+                              <span className="truncate">{sub.title}</span>
+                              {sub.id === currentWeekSubTopicId && (
+                                <span className="shrink-0 px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[9px] uppercase tracking-wider shadow-2xs">
+                                  BU HAFTA
+                                </span>
+                              )}
                             </div>
                             {sub.concepts && sub.concepts.length > 0 && (
                               <div className={`text-[10px] truncate mt-0.5 ${
@@ -313,6 +328,21 @@ export const CurriculumSidebar: React.FC<Props> = ({
           <span className="font-semibold">{currentGrade}. Sınıf • {gradeUnits.length} Ünite</span>
           <span className="text-emerald-700 font-bold">%100 MEB Maarif</span>
         </div>
+        {onOpenProgressDashboard && (
+          <button
+            onClick={onOpenProgressDashboard}
+            className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-bold transition-all text-[11px] cursor-pointer"
+            title="Öğrenci ve Sınıf İlerleme Takip Panelini Aç"
+          >
+            <span className="flex items-center gap-1.5 truncate">
+              <BarChart3 className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+              <span>Sınıf İlerleme & Başarı Paneli</span>
+            </span>
+            <span className="text-[10px] bg-indigo-200 text-indigo-900 px-1.5 py-0.2 rounded font-mono">
+              Takip
+            </span>
+          </button>
+        )}
         <a
           href={getSpecificEbaLink(currentGrade, currentUnit, currentSubTopic)}
           target="_blank"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   GraduationCap,
   Sparkles,
@@ -14,15 +14,60 @@ import {
   Flame,
   Globe2,
   Award,
-  CheckCheck
+  CheckCheck,
+  BarChart3,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  CalendarDays
 } from 'lucide-react';
+import {
+  academicWeeksCalendar,
+  allGradeSchedules
+} from '../data/annualCurriculumSchedule';
+import {
+  getCurrentCalendarWeek,
+  getCalendarWeekInfo
+} from '../utils/annualScheduleUtils';
 
 interface Props {
   onSelectGrade: (grade: number) => void;
   currentGrade?: number;
+  onOpenProgressDashboard?: () => void;
+  onOpenWeekTopic?: (grade: number, weekNumber: number) => void;
+  onOpenAnnualScheduleModal?: () => void;
 }
 
-export const MaarifWelcomeLandingView: React.FC<Props> = ({ onSelectGrade, currentGrade }) => {
+export const MaarifWelcomeLandingView: React.FC<Props> = ({
+  onSelectGrade,
+  currentGrade,
+  onOpenProgressDashboard,
+  onOpenWeekTopic,
+  onOpenAnnualScheduleModal
+}) => {
+  const currentCalendarWeek = getCurrentCalendarWeek();
+  const [browseWeek, setBrowseWeek] = useState<number>(currentCalendarWeek);
+  const calendarInfo = getCalendarWeekInfo(browseWeek);
+  const isCurrentWeek = browseWeek === currentCalendarWeek;
+
+  const handlePrevWeek = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (browseWeek > 1) setBrowseWeek(prev => prev - 1);
+  };
+
+  const handleNextWeek = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (browseWeek < 37) setBrowseWeek(prev => prev + 1);
+  };
+
+  const handleOpenForGrade = (grade: number) => {
+    if (onOpenWeekTopic) {
+      onOpenWeekTopic(grade, browseWeek);
+    } else {
+      onSelectGrade(grade);
+    }
+  };
+
   const gradeOptions = [
     {
       grade: 5,
@@ -87,6 +132,161 @@ export const MaarifWelcomeLandingView: React.FC<Props> = ({ onSelectGrade, curre
         <p className="text-base sm:text-xl font-bold text-slate-700 max-w-2xl mx-auto leading-relaxed">
           Lütfen ders işlemek istediğiniz sınıf seviyesini seçiniz:
         </p>
+      </div>
+
+      {/* HAFTALIK MÜFREDAT TAKVİMİ KARTI (5, 6, 7, 8. Sınıflar İçin Haftalık Plan) */}
+      <div className="rounded-3xl bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-white p-5 sm:p-7 shadow-lg border border-emerald-700/40 space-y-5">
+        
+        {/* Top Header & Controls */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-emerald-800/60 pb-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-300">
+                <CalendarDays className="w-5 h-5" />
+              </span>
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                2026-2027 EĞİTİM ÖĞRETİM YILI • MEB MAARİF MODELİ
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black font-fredoka text-white flex items-center gap-2.5 flex-wrap">
+              <span>Haftalık Müfredat Takvimi</span>
+              <span className="text-emerald-400">• {browseWeek}. Hafta</span>
+              <span className="text-xs sm:text-sm font-normal text-emerald-200">({calendarInfo.range})</span>
+              {isCurrentWeek && (
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-xs font-black animate-pulse">
+                  ★ GÜNCEL TAKVİMDEKİ HAFTA
+                </span>
+              )}
+            </h2>
+          </div>
+
+          {/* Navigation Controls: Önceki Hafta / Sonraki Hafta Tuşları */}
+          <div className="flex items-center flex-wrap gap-2">
+            {/* Previous Week */}
+            <button
+              onClick={handlePrevWeek}
+              disabled={browseWeek <= 1}
+              className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                browseWeek <= 1
+                  ? 'bg-white/5 text-white/30 cursor-not-allowed border border-white/10'
+                  : 'bg-white/15 hover:bg-emerald-500 hover:text-slate-950 text-white border border-white/20 active:scale-95 shadow-xs'
+              }`}
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span>◀ Önceki Hafta</span>
+            </button>
+
+            {/* Week Selector Dropdown */}
+            <select
+              value={browseWeek}
+              onChange={e => setBrowseWeek(parseInt(e.target.value, 10))}
+              className="bg-slate-800/90 hover:bg-slate-800 text-white border border-emerald-600/50 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer"
+            >
+              {academicWeeksCalendar.map(w => (
+                <option key={w.week} value={w.week} className="bg-slate-900 text-white">
+                  {w.week}. Hafta ({w.range}) {w.week === currentCalendarWeek ? '★ GÜNCEL' : ''}
+                </option>
+              ))}
+            </select>
+
+            {/* Next Week */}
+            <button
+              onClick={handleNextWeek}
+              disabled={browseWeek >= 37}
+              className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                browseWeek >= 37
+                  ? 'bg-white/5 text-white/30 cursor-not-allowed border border-white/10'
+                  : 'bg-white/15 hover:bg-emerald-500 hover:text-slate-950 text-white border border-white/20 active:scale-95 shadow-xs'
+              }`}
+            >
+              <span>Sonraki Hafta ▶</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Jump to current week if different */}
+            {!isCurrentWeek && (
+              <button
+                onClick={() => setBrowseWeek(currentCalendarWeek)}
+                className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition-colors shadow-xs"
+                title="Bugünkü takvim haftasına dön"
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>Güncel Haftaya Git</span>
+              </button>
+            )}
+
+            {/* Full 37-Week Modal Launcher */}
+            {onOpenAnnualScheduleModal && (
+              <button
+                onClick={onOpenAnnualScheduleModal}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600/40 hover:bg-emerald-600 text-emerald-100 hover:text-white border border-emerald-500/40 text-xs font-bold transition-colors"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Tüm Yıllık Plan (37 Hafta)</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Special Days Alert if any */}
+        {calendarInfo.special && (
+          <div className="bg-red-500/20 border border-red-500/40 text-red-200 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-red-400 animate-ping"></span>
+            <span>Özel Gün / Belirli Gün ve Haftalar: <strong>{calendarInfo.special}</strong></span>
+          </div>
+        )}
+
+        {/* 4 Grade Level Topic Cards for This Week (5, 6, 7, 8. Sınıf) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {[5, 6, 7, 8].map(grade => {
+            const schedule = allGradeSchedules[grade] || [];
+            const item = schedule.find(i => i.weekNumber === browseWeek);
+            if (!item) return null;
+
+            return (
+              <div
+                key={grade}
+                className="bg-white/10 hover:bg-white/15 rounded-2xl p-4 border border-white/10 hover:border-emerald-400/50 transition-all flex flex-col justify-between group"
+              >
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-black text-xs shadow-xs">
+                      {grade}. Sınıf
+                    </span>
+                    <span className="text-[11px] font-mono text-emerald-300 font-bold">
+                      Ünite {item.unitNumber}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[11px] text-emerald-200/80 font-medium block truncate">
+                      {item.unitTitle}
+                    </span>
+                    <h3 className="font-bold text-sm text-white mt-0.5 line-clamp-2 group-hover:text-emerald-300 transition-colors">
+                      {item.topicTitle}
+                    </h3>
+                  </div>
+
+                  {item.learningOutcomes?.[0] && (
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono font-bold">
+                        {item.learningOutcomes[0]}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => handleOpenForGrade(grade)}
+                  className="mt-4 w-full py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs active:scale-95"
+                >
+                  <span>{grade}. Sınıf Konusunu Aç</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Grade Cards 2x2 Grid */}
@@ -164,14 +364,24 @@ export const MaarifWelcomeLandingView: React.FC<Props> = ({ onSelectGrade, curre
         })}
       </div>
 
-      {/* Info Banner */}
-      <div className="p-5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+      {/* Info Banner & Teacher Dashboard Quick Access */}
+      <div className="p-5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
         <div className="flex items-center gap-2">
           <CheckCheck className="w-5 h-5 text-emerald-600 shrink-0" />
           <span>
             Tüm sınıf ve ünitelerde akıllı tahta çizim kalemi, ders süreölçeri, öğrenci çarkı, EBA karekodları, açılır-kapanır cevap kutucukları ve <strong>Otomatik Soru & PDF Çıktı</strong> alma sistemi entegredir.
           </span>
         </div>
+
+        {onOpenProgressDashboard && (
+          <button
+            onClick={onOpenProgressDashboard}
+            className="px-4 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-bold text-xs flex items-center gap-2 transition-all shrink-0 cursor-pointer shadow-xs"
+          >
+            <BarChart3 className="w-4 h-4 text-indigo-600" />
+            <span>Öğretmen İlerleme Paneli</span>
+          </button>
+        )}
       </div>
     </div>
   );

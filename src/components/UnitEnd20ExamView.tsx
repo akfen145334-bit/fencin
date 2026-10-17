@@ -16,6 +16,7 @@ import {
   AlertCircle,
   Printer
 } from 'lucide-react';
+import { recordQuizAttempt } from '../utils/studentProgressTracker';
 
 interface Props {
   unit: Unit;
@@ -108,6 +109,22 @@ export const UnitEnd20ExamView: React.FC<Props> = ({
 
   const handleFinishExam = () => {
     setExamStatus('completed');
+    try {
+      const answeredKeys = Object.keys(userAnswers).map(Number);
+      const correct = exam20Questions.filter(
+        q => userAnswers[q.id] !== undefined && userAnswers[q.id] === q.correctAnswer
+      ).length;
+      const wrong = answeredKeys.length - correct;
+
+      recordQuizAttempt('unitEnd', unit.id, {
+        total: exam20Questions.length,
+        correct,
+        wrong,
+        unanswered: Math.max(0, exam20Questions.length - answeredKeys.length)
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   // =========================================================================

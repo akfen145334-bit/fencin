@@ -21,8 +21,10 @@ import {
   HelpCircle,
   BookOpen,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  MapPin
 } from 'lucide-react';
+import { recordQuizAttempt } from '../utils/studentProgressTracker';
 
 interface Props {
   unit?: Unit;
@@ -45,6 +47,7 @@ export const LgsQuestionBoard: React.FC<Props> = ({
   const [showExplanation, setShowExplanation] = useState<Record<number, boolean>>({});
   const [filterMode, setFilterMode] = useState<'all' | 'wrong' | 'unanswered'>('all');
   const [selectedThemeFilter, setSelectedThemeFilter] = useState<string>('all');
+  const [selectedProvinceFilter, setSelectedProvinceFilter] = useState<string>('all');
   const [isPoolDrawerOpen, setIsPoolDrawerOpen] = useState(false);
   const [isReasoningActivityOpen, setIsReasoningActivityOpen] = useState(false);
   const [similarMatchNote, setSimilarMatchNote] = useState<string | null>(null);
@@ -91,7 +94,21 @@ export const LgsQuestionBoard: React.FC<Props> = ({
     return Array.from(set);
   }, [rawQuestions]);
 
-  // Filtered questions based on status and theme
+  // Available provinces/ÖDM in current question set
+  const availableProvinces = useMemo(() => {
+    const set = new Set<string>();
+    rawQuestions.forEach(q => {
+      if (q.province) set.add(q.province);
+      else if (q.source) set.add(q.source);
+      else if (q.contextTitle && q.contextTitle.includes('ÖDM')) {
+        const m = q.contextTitle.match(/\(([^)]+ÖDM)\)/);
+        if (m) set.add(m[1]);
+      }
+    });
+    return Array.from(set);
+  }, [rawQuestions]);
+
+  // Filtered questions based on status, theme, and province
   const questions = useMemo(() => {
     return rawQuestions.filter(q => {
       const ans = userAnswers[q.id];
@@ -105,23 +122,47 @@ export const LgsQuestionBoard: React.FC<Props> = ({
         const matchesTheme = q.theme === selectedThemeFilter || q.skillTag === selectedThemeFilter;
         if (!matchesTheme) return false;
       }
+      if (selectedProvinceFilter !== 'all') {
+        const prov = q.province || q.source || (q.contextTitle?.match(/\(([^)]+ÖDM)\)/)?.[1]);
+        if (prov !== selectedProvinceFilter) return false;
+      }
       return true;
     });
-  }, [rawQuestions, filterMode, selectedThemeFilter, userAnswers]);
+  }, [rawQuestions, filterMode, selectedThemeFilter, selectedProvinceFilter, userAnswers]);
 
   const safeIdx = Math.min(activeQuestionIdx, Math.max(0, questions.length - 1));
   const currentQ = questions[safeIdx] || questions[0];
 
   const handleSelectOption = (key: string) => {
     if (!currentQ) return;
-    setUserAnswers(prev => ({
-      ...prev,
+    const newAnswers = {
+      ...userAnswers,
       [currentQ.id]: key
-    }));
+    };
+    setUserAnswers(newAnswers);
     setShowExplanation(prev => ({
       ...prev,
       [currentQ.id]: true
     }));
+
+    // Live sync with Student Progress Tracker
+    try {
+      const answeredIds = Object.keys(newAnswers).map(Number);
+      const correct = answeredIds.filter(id => {
+        const q = rawQuestions.find(item => item.id === id);
+        return q && newAnswers[id] === q.correctAnswer;
+      }).length;
+      const wrong = answeredIds.length - correct;
+
+      recordQuizAttempt('lgs', subTopic.id, {
+        total: rawQuestions.length,
+        correct,
+        wrong,
+        unanswered: Math.max(0, rawQuestions.length - answeredIds.length)
+      });
+    } catch (e) {
+      console.error('Failed to sync progress:', e);
+    }
   };
 
   const toggleExplanation = (qId: number) => {
@@ -401,6 +442,23 @@ export const LgsQuestionBoard: React.FC<Props> = ({
                 ))}
               </select>
             )}
+
+            {/* ÖDM / İl Testi Filtresi Dropdown */}
+            {availableProvinces.length > 0 && (
+              <select
+                value={selectedProvinceFilter}
+                onChange={e => {
+                  setSelectedProvinceFilter(e.target.value);
+                  setActiveQuestionIdx(0);
+                }}
+                className="text-[11px] font-bold bg-indigo-50 border border-indigo-200 text-indigo-900 rounded-lg px-2 py-1 outline-none"
+              >
+                <option value="all">🏛️ Tüm ÖDM Testleri ({availableProvinces.length})</option>
+                {availableProvinces.map((p, idx) => (
+                  <option key={idx} value={p}>🏛️ {p}</option>
+                ))}
+              </select>
+            )}
           </div>
         </div>
 
@@ -539,6 +597,12 @@ export const LgsQuestionBoard: React.FC<Props> = ({
                   {currentQ.cognitiveLevel}
                 </span>
               )}
+              {(currentQ.province || currentQ.source) && (
+                <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200 flex items-center gap-1 shadow-xs">
+                  <MapPin className="w-3 h-3 text-blue-600" />
+                  {currentQ.province || currentQ.source}
+                </span>
+              )}
             </div>
 
             <div className="flex items-center gap-2 flex-wrap">
@@ -615,7 +679,7 @@ export const LgsQuestionBoard: React.FC<Props> = ({
                     <table className="w-full text-left text-xs sm:text-sm">
                       <thead className="bg-slate-50 border-b border-slate-200 text-slate-800">
                         <tr>
-                          {currentQ.visualData.tableHeaders?.map((th, thIdx) => (
+                          {currentQ.visualData.tableHeaders?.map((th: string, thIdx: number) => (
                             <th key={thIdx} className="p-3 font-bold border-r border-slate-200 last:border-r-0">
                               {th}
                             </th>
@@ -623,9 +687,9 @@ export const LgsQuestionBoard: React.FC<Props> = ({
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-200 text-slate-700 font-mono">
-                        {currentQ.visualData.tableRows?.map((tr, trIdx) => (
+                        {currentQ.visualData.tableRows?.map((tr: any[], trIdx: number) => (
                           <tr key={trIdx} className="hover:bg-slate-50">
-                            {tr.map((td, tdIdx) => (
+                            {tr.map((td: any, tdIdx: number) => (
                               <td key={tdIdx} className="p-3 border-r border-slate-100 last:border-r-0">
                                 {td}
                               </td>
@@ -647,7 +711,7 @@ export const LgsQuestionBoard: React.FC<Props> = ({
                   </div>
                   {currentQ.visualData.diagramNotes && (
                     <ul className="space-y-1.5 text-xs sm:text-sm text-slate-800">
-                      {currentQ.visualData.diagramNotes.map((note, nIdx) => (
+                      {currentQ.visualData.diagramNotes.map((note: string, nIdx: number) => (
                         <li key={nIdx} className="flex items-start gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-2 shrink-0" />
                           <span>{note}</span>

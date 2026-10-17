@@ -16,6 +16,7 @@ import {
   Layers,
   Award
 } from 'lucide-react';
+import { recordQuizAttempt } from '../utils/studentProgressTracker';
 
 interface Props {
   unit: Unit;
@@ -72,10 +73,11 @@ export const TrueFalseQuiz: React.FC<Props> = ({
   const currentQ = questions[safeIdx] || questions[0];
 
   const handleAnswer = (qId: number, answer: boolean) => {
-    setUserAnswers(prev => ({
-      ...prev,
+    const updatedAnswers = {
+      ...userAnswers,
       [qId]: answer
-    }));
+    };
+    setUserAnswers(updatedAnswers);
 
     const targetQ = rawQuestions.find(q => q.id === qId);
     if (targetQ) {
@@ -88,6 +90,24 @@ export const TrueFalseQuiz: React.FC<Props> = ({
       } else {
         setStreak(0);
       }
+    }
+
+    try {
+      const answeredIds = Object.keys(updatedAnswers).map(Number);
+      const correct = answeredIds.filter(id => {
+        const q = rawQuestions.find(item => item.id === id);
+        return q && updatedAnswers[id] === q.isCorrect;
+      }).length;
+      const wrong = answeredIds.length - correct;
+
+      recordQuizAttempt('tf', subTopic.id, {
+        total: rawQuestions.length,
+        correct,
+        wrong,
+        unanswered: Math.max(0, rawQuestions.length - answeredIds.length)
+      });
+    } catch (e) {
+      console.error(e);
     }
   };
 

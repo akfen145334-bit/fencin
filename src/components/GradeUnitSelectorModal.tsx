@@ -93,7 +93,7 @@ export const GradeUnitSelectorModal: React.FC<Props> = ({
         <div className="p-6 overflow-y-auto max-h-[60vh] space-y-3 bg-white">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500 mb-2">
             <span>{currentGradeObj.label} Fen Bilimleri Üniteleri</span>
-            <span className="text-emerald-700">{currentGradeObj.description}</span>
+            <span className="text-emerald-700">{(currentGradeObj as any).description || ''}</span>
           </div>
 
           {/* Units for Active Grade */}

@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { SubTopic, Unit, InteractiveBookItem } from '../types/curriculum';
 import { getCompleteInteractiveBookFlow } from '../data/maarifInteractiveBookData';
+import { recordSubtopicCompleted } from '../utils/studentProgressTracker';
 import {
   BookOpen,
   HelpCircle,
@@ -49,6 +50,16 @@ export const InteractiveBookView: React.FC<Props> = ({
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [openEvalAnswers, setOpenEvalAnswers] = useState<Record<string, boolean>>({});
   const [localAllRevealed, setLocalAllRevealed] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (subTopic?.id) {
+      try {
+        recordSubtopicCompleted(subTopic.id);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, [subTopic?.id]);
 
   const isItemOpen = (id: string) => {
     if (localAllRevealed) return true;

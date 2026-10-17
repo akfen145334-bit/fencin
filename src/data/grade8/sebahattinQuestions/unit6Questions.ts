@@ -23,7 +23,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Piramidin tabanında üreticiler (K), üzerinde otçullar (L), etçiller (M) ve tepe avcılar (N) yer alır. Her basamaktan madde alan O canlısı ise organik atıkları ve leşleri parçalayan ayrıştırıcı (saprofit) canlılardır.',
     skillTag: 'Model ve Şema Yorumlama',
     cognitiveLevel: 'Besin Piramidi Basamakları',
-    theme: 'Ekoloji Piramidi ve Enerji Akışı'
+    theme: 'Ekoloji Piramidi ve Enerji Akışı',
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -42,7 +44,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Kurbağa popülasyonu çökerse avcısı olan tırtıllar hızla çoğalır. Tırtıl sayısının artması mısır bitkilerinin tüketilmesine yol açar. Aynı zamanda kurbağa ile beslenen yılanların besini azalacağı için yılanlar ve dolaylı olarak şahinler olumsuz etkilenir.',
     skillTag: 'Bilimsel Çıkarım',
     cognitiveLevel: 'Besin Zincirinde Denge Bozulması',
-    theme: 'Besin Ağı Dinamikleri'
+    theme: 'Besin Ağı Dinamikleri',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -61,7 +65,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Biyolojik birikim (zehir) besin piramidinde aşağıdan yukarıya doğru artar. Dolayısıyla dokusunda en çok zehir bulunan P canlısı piramidin en tepesindedir (tepe tüketici). Tepe tüketicilerin birey sayısı ve toplam biyokütlesi en azdır, en fazla olan tabandaki üreticilerdir (C yanlıştır).',
     skillTag: 'Grafik ve Tablo Yorumlama',
     cognitiveLevel: 'Biyolojik Birikim Analizi',
-    theme: 'Besin Piramidinde Biyolojik Birikim'
+    theme: 'Besin Piramidinde Biyolojik Birikim',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -80,7 +86,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Keklik sayısı azalırsa tırtılları avlayan canlı sayısı azalır ve tırtıl popülasyonu patlama yapar. Çoğalan tırtıllar daha çok dut yaprağı tüketeceğinden üretici canlı sayısı hızla azalır.',
     skillTag: 'Mantık Muhakeme',
     cognitiveLevel: 'Ekolojik Neden-Sonuç Döngüsü',
-    theme: 'Besin Zincirinde Popülasyon Değişimi'
+    theme: 'Besin Zincirinde Popülasyon Değişimi',
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -99,7 +107,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Besin zincirinde enerjinin yalnızca yaklaşık %10\'u bir üst basamağa aktarılır, %90\'ı yaşam faaliyetlerinde ısı olarak kaybolur. Bu nedenle alt basamaklardaki enerji aktarımı (üreticiden birincil tüketiciye), üst basamaklardaki enerji aktarımından (ikincilden üçüncüle) ÇOK DAHA FAZLADIR. D seçeneğindeki "daha azdır" ifadesi yanlıştır.',
     skillTag: 'Model ve Şema Yorumlama',
     cognitiveLevel: 'Besin Ağında Enerji Kaybı Prensibi',
-    theme: 'Ekosistemde Enerji Akışı'
+    theme: 'Ekosistemde Enerji Akışı',
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -118,7 +128,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Baykuş sayısı azaldığında, baykuşların avladığı tavşanlar üzerindeki av baskısı kalkar ve tavşan popülasyonu artar (II doğru). Artan tavşanlar daha fazla lahana tüketeceği için lahana sayısı zamanla azalır (I doğru). Kurtların besini tavşan da olabildiğinden kurt popülasyonu doğrudan "anında" artışa geçmez.',
     skillTag: 'Bilimsel Çıkarım',
     cognitiveLevel: 'Popülasyon Dalgalanmaları',
-    theme: 'Besin Zincirinde Denge Bozulması'
+    theme: 'Besin Zincirinde Denge Bozulması',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -137,7 +149,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Ekolojide "üretici canlı" kavramı, fotosentez veya kemosentez yaparak inorganik maddelerden organik besin üreten canlıları (bitkiler, algler, siyanobakteriler) ifade eder. İnsanlar (Mehmet) tarım yapsalar dahi biyolojik olarak tüketici (heterotrof) canlı sınıfındadır.',
     skillTag: 'Günlük Yaşam Bağı',
     cognitiveLevel: 'Ekolojik Rol ve Kavram Ayrımı',
-    theme: 'Besin Zincirinde Canlı Rolleri'
+    theme: 'Besin Zincirinde Canlı Rolleri',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -156,7 +170,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Enerji akışında %10 kuralı geçerlidir: Enerjinin yaklaşık %90'ı o canlının solunumu, boşaltımı, metabolizması ve çevreye ısı olarak yayılmasıyla kaybolur; yalnızca yaklaşık %10'luk kısmı bir üst trofik düzeye aktarılır. Bu nedenle D şıkkındaki ifade tam tersi söylenerek kurgulanmış büyük bir hatadır.",
     skillTag: "Enerji Piramidi Analizi",
     cognitiveLevel: "%10 Enerji Kuralı ve Biyokütle",
-    theme: "Besin Piramidinde Enerji Akışı"
+    theme: "Besin Piramidinde Enerji Akışı",
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -175,7 +191,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Turna balığı küçük balıklarla beslenir ve balıkçıl kuşların avıdır. Turna balığı azalınca üzerindeki av baskısı kalkan küçük balık popülasyonu hızla çoğalır. Küçük balıklar çoğalınca onların besini olan zooplanktonları aşırı tüketirler ve zooplanktonlar hızla düşer. Turna balığı bulamayan balıkçıl kuşlar ise besinsiz kalıp azalır.",
     skillTag: "Ekosistem Popülasyon Dengesi",
     cognitiveLevel: "Trofik Kaskad ve Besin Ağı",
-    theme: "Besin Zincirinde Canlı Popülasyonları"
+    theme: "Besin Zincirinde Canlı Popülasyonları",
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -194,7 +212,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Biyolojik birikim (zehirli madde derişimi) besin zincirinin en alt basamağındaki üreticilerde en az, besin piramidinin en tepesindeki son tüketicide en fazladır. Ölçülen değerler küçükten büyüğe: K (0,04 ppm) < M (0,5 ppm) < N (2 ppm) < L (25 ppm) olduğundan besin piramidi sırası K -> M -> N -> L şeklindedir.",
     skillTag: "Veri Analizi ve Tablo Yorumlama",
     cognitiveLevel: "Biyolojik Birikim (Biyoakümülasyon)",
-    theme: "Zehirli Madde Birikimi"
+    theme: "Zehirli Madde Birikimi",
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -213,7 +233,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Ayrıştırıcılar besin zincirinin her basamağında yer alır. Ölü bitki ve hayvan kalıntılarını parçalayarak organik maddeleri inorganik minerallere dönüştürür ve toprağa kazandırır. Ayrıştırıcılar olmasa mineraller toprağa dönemez, üreticiler beslenemez ve tüm besin piramidi yok olur.",
     skillTag: "Ekolojik Muhakeme",
     cognitiveLevel: "Ayrıştırıcıların İşlevi",
-    theme: "Madde Döngüsü ve Ayrıştırıcılar"
+    theme: "Madde Döngüsü ve Ayrıştırıcılar",
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -232,7 +254,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Şapkalı mantarlar kesinlikle bitki veya üretici DEĞİLDİR! Klorofilleri ve kloroplastları yoktur, fotosentez yapamazlar. Mantarlar tüketici (heterotrof) ve ayrıştırıcı canlılardır; organik maddeleri dış ortamdan hazır olarak alırlar.",
     skillTag: "Canlıların Sınıflandırılması",
     cognitiveLevel: "Ototrof Heterotrof Ayrımı",
-    theme: "Besin Zincirinde Canlı Tipleri"
+    theme: "Besin Zincirinde Canlı Tipleri",
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   // Subtopic 2: Enerji Dönüşümleri (Fotosentez ve Solunum)
@@ -252,7 +276,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'M bitkisinde ışık almayan yaprak fotosentez yapamamış ve besin üretememiştir. Eğer poşet şeffaf olsaydı o yaprak da ışık alıp fotosentez yapacak ve bitkinin kuru kütle artışı daha yüksek olacaktı.',
     skillTag: 'Deney & Değişken Analizi',
     cognitiveLevel: 'Kontrollü Deney ve Kütle Artışı',
-    theme: 'Fotosentezde Işık Gereksinimi'
+    theme: 'Fotosentezde Işık Gereksinimi',
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -271,7 +297,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Etil alkol fermantasyonunda yan ürün olarak karbondioksit (CO2) gazı açığa çıkar ve bu gaz balonu şişirir. Laktik asit fermantasyonunda ise gaz çıkışı olmaz, bu yüzden balon şişmez.',
     skillTag: 'Bilimsel Çıkarım',
     cognitiveLevel: 'Fermantasyon Ürünleri Ayrımı',
-    theme: 'Fermantasyon Türleri ve Gaz Çıkışı'
+    theme: 'Fermantasyon Türleri ve Gaz Çıkışı',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -290,7 +318,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Su, CO2 ve ışık şiddeti arttıkça fotosentez hızı belirli bir doygunluk noktasına kadar artar ve sonra sabit kalır. Ancak sıcaklık arttıkça önce artıp 35 °C civarında maksimuma ulaştıktan sonra enzimlerin denatüre olmasıyla hızla sıfıra düşen tek faktör sıcaklıktır.',
     skillTag: 'Grafik ve Tablo Yorumlama',
     cognitiveLevel: 'Enzim ve Sıcaklık Eğrisi',
-    theme: 'Fotosentez Hızını Etkileyen Faktörler'
+    theme: 'Fotosentez Hızını Etkileyen Faktörler',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -309,7 +339,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Yaz mevsiminde fotosentez hızı gündüz saatlerinde solunum hızının katlarca üzerine çıkar (I). Solunum ise canlılığın devamı için 24 saat boyunca kesintisiz sürer.',
     skillTag: 'Model ve Şema Yorumlama',
     cognitiveLevel: 'Günlük Biyolojik Ritim',
-    theme: 'Fotosentez vs Solunum Dengesi'
+    theme: 'Fotosentez vs Solunum Dengesi',
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -328,7 +360,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Klorofil yeşil rengi yansıttığı için yeşil görünür ve yeşil ışıkta soğurma minimumdur (%8), bu nedenle fotosentez en yavaştır. Kırmızı ve mor ışık ise klorofil tarafından en fazla soğurulan ışıklardır (%80+) ve fotosentez hızı buralarda maksimumdur.',
     skillTag: 'Grafik ve Tablo Yorumlama',
     cognitiveLevel: 'Işık Dalga Boyu ve Soğurma',
-    theme: 'Işığın Rengi ve Fotosentez'
+    theme: 'Işığın Rengi ve Fotosentez',
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -347,7 +381,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Fotosentez enzimatik bir kimyasal reaksiyondur. 0 °C civarında enzimler inaktif olduğundan fotosentez yavaştır. Optimum sıcaklık olan 25-30 °C\'ye kadar hız artar. Ancak 35-40 °C\'nin üzerinde enzimlerin protein yapısı denatüre olduğu (bozulduğu) için fotosentez hızı aniden düşer ve 50-60 °C\'de tamamen durur.',
     skillTag: 'Grafik ve Tablo Yorumlama',
     cognitiveLevel: 'Enzim ve Sıcaklık Değişkeni',
-    theme: 'Fotosentez Hızını Etkileyen Faktörler'
+    theme: 'Fotosentez Hızını Etkileyen Faktörler',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -366,7 +402,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Siyah bant yaprağın o bölgesinin ışık almasını engellemiştir. Işık almayan bölgede fotosentez gerçekleşmediğinden nişasta üretilememiş ve iyot rengi mavi-mora dönüşmemiştir. Işık alan bölgelerde ise fotosentezle üretilen glikoz nişastaya çevrilmiş ve iyotla mor renk vermiştir. Her 3 öncül de deneyin kanıtladığı kesin doğrulardır.',
     skillTag: 'Deney & Değişken Analizi',
     cognitiveLevel: 'Fotosentez Ürünü Belirteç Deneyi',
-    theme: 'Fotosentez ve Nişasta Testi'
+    theme: 'Fotosentez ve Nişasta Testi',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -385,7 +423,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Klorofil yeşil ışığı soğurmaz, neredeyse tamamını (%90+) yansıtır veya geçirir. Bu yüzden yeşil ışık altında fotosentez minimum seviyededir. Yeşil filtre altındaki bitki yeterli besin üretemez ve yavaş gelişir. C seçeneğindeki "daha hızlı büyür" iddiası yanlıştır.',
     skillTag: 'Bilimsel Çıkarım',
     cognitiveLevel: 'Işık Rengi ve Bitki Gelişimi',
-    theme: 'Işık Filtreleri ve Fotosentez'
+    theme: 'Işık Filtreleri ve Fotosentez',
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -404,7 +444,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Klorofil pigmenti kırmızı, mor ve mavi ışığı yüksek oranda soğurur (absorbe eder) ve fotosentez hızı en yüksek olur. Yeşil ışığı ise büyük oranda yansıttığı için yeşil ışıkta fotosentez en yavaş gerçekleşir ve en az gaz kabarcığı (oksijen) üretilir.",
     skillTag: "Deney Tasarımı ve Işık Spektrumu",
     cognitiveLevel: "Fotosentez Hızı ve Işık Dalga Boyu",
-    theme: "Işık Rengi ve Fotosentez"
+    theme: "Işık Rengi ve Fotosentez",
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -423,7 +465,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Fotosentez denklemi: CO2 + H2O + Işık -> Glikoz + O2. Kireç suyu (veya KOH) güçlü bir CO2 tutucudur. Ortamdaki karbondioksit tükendiğinde bitki fotosentez yapamaz ve ortama oksijen veremez. Yanan mum ortamdaki sınırlı oksijeni tüketince söner.",
     skillTag: "Kimyasal Belirteç & Hipotez Analizi",
     cognitiveLevel: "Fotosentez Hammaddeleri ve CO2 Tutucular",
-    theme: "CO2 ve Fotosentez"
+    theme: "CO2 ve Fotosentez",
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -442,7 +486,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Fermantasyonda enerji hammaddesi şekerdir (glikoz). Erlenmayere şeker konulmazsa mayalar besin bulamaz, solunum yapamaz ve CO2 gazı üretemez; dolayısıyla balon şişmez. B seçeneğindeki ifade yanlıştır.",
     skillTag: "Fermantasyon Deney Yorumlama",
     cognitiveLevel: "Oksijensiz Solunum ve Maya Faaliyeti",
-    theme: "Etil Alkol Fermantasyonu"
+    theme: "Etil Alkol Fermantasyonu",
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -461,7 +507,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Solunum tüm canlılar için yaşam boyu (gece ve gündüz 7/24) kesintisiz devam eder. Fotosentez ise yalnızca ışık varlığında (gündüzleri) gerçekleşir. Öğle saatlerinde fotosentez hızı solunumu kat kat aştığından bitki dışarıdan bolca CO2 alır ve atmosfere bolca O2 verir.",
     skillTag: "Grafik Yorumlama ve Günlük Ritim",
     cognitiveLevel: "Fotosentez - Solunum Karşılaştırması",
-    theme: "Bitkilerde 24 Saatlik Metabolizma"
+    theme: "Bitkilerde 24 Saatlik Metabolizma",
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -480,7 +528,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Fotosentez reaksiyonları enzimler kontrolünde gerçekleşir. Sıcaklık optimum seviyenin (yaklaşık 30-35°C) üzerine çıktığında, özellikle 50-60°C ve üstünde enzimlerin protein yapısı kalıcı olarak bozulur (denatüre olur) ve fotosentez tamamen durur. 80°C'de fotosentez hızlanmaz, sıfırlanır.",
     skillTag: "Çoklu Değişkenli Grafik Analizi",
     cognitiveLevel: "Optimum Sıcaklık ve Enzim Aktivitesi",
-    theme: "Fotosentezi Etkileyen Çevresel Faktörler"
+    theme: "Fotosentezi Etkileyen Çevresel Faktörler",
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -499,7 +549,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Çimlenme aşamasındaki tohumlarda henüz klorofil ve yeşil yapraklar oluşmamıştır; bu nedenle tohum çimlenirken fotosentez YAPAMAZ. Tohumun içindeki depo besin oksijenli solunum ile parçalanır. Ortamdaki O2 tüketildiği için iç basınç düşer ve U borusundaki sıvı kaba doğru emilir; üretilen CO2 ise kireç suyunu bulandırır.",
     skillTag: "Deney Düzenekleri Muhakemesi",
     cognitiveLevel: "Tohumda Çimlenme ve Solunum",
-    theme: "Çimlenme Sürecinde Gaz Değişimi"
+    theme: "Çimlenme Sürecinde Gaz Değişimi",
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   // Subtopic 3: Madde Döngüleri ve Çevre Sorunları
@@ -519,7 +571,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Havadaki serbest azot gazının toprağa bağlanması yıldırım/şimşek olaylarıyla ve kökteki azot bağlayıcı bakterilerle gerçekleşir. Canlılar azotu doğrudan havadan soluyamaz; bitkiler kökleriyle nitrat tuzu olarak, tüketiciler ise besin zinciriyle bitkilerden alır.',
     skillTag: 'Model ve Şema Yorumlama',
     cognitiveLevel: 'Azot Fiksasyonu Mekanizması',
-    theme: 'Azot Döngüsü'
+    theme: 'Azot Döngüsü',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -538,7 +592,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Fotosentez ürünü olup solunuma giren gaz K = Oksijen; mitokondride gerçekleşen olay L = Solunum; solunum sonucu açığa çıkıp fotosenteze giren inorganik madde ise M = Karbon dioksittir.',
     skillTag: 'Model ve Şema Yorumlama',
     cognitiveLevel: 'Madde Döngüleri Bütünlüğü',
-    theme: 'Karbon ve Oksijen Döngüsü'
+    theme: 'Karbon ve Oksijen Döngüsü',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -557,7 +613,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Önce fosil yakıtlar yakılır (II) ➔ atmosfere sera gazı salınır ve birikir (I) ➔ yansıyan ışınlar sera gazlarınca tutulur (III) ➔ ortalama küresel sıcaklık yükselir (IV) ➔ kutup buzulları erir ve denizler yükselir (V). Doğru sıra: II - I - III - IV - V.',
     skillTag: 'Mantık Muhakeme',
     cognitiveLevel: 'Süreç ve Neden-Sonuç Sıralaması',
-    theme: 'Küresel Isınma Mekanizması'
+    theme: 'Küresel Isınma Mekanizması',
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -576,7 +634,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'I. akvaryumda fotosentez yapan üretici veya dışarıdan hava veren motor olmadığı için sudaki çözünmüş oksijen hızla tükenmiş ve balık boğulmuştur. II. akvaryumda su bitkisi balığın solunumuyla oluşan CO2\'yi fotosentezde kullanarak oksijen üretmiş, böylece kendi kendine yeten bir karbon-oksijen döngüsü kurmuştur.',
     skillTag: 'Deney & Değişken Analizi',
     cognitiveLevel: 'Döngü ve Canlı Yaşamı İlişkisi',
-    theme: 'Kapalı Ekosistemde Oksijen Döngüsü'
+    theme: 'Kapalı Ekosistemde Oksijen Döngüsü',
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -595,7 +655,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Ozon tabakası Dünya’nın UV kalkanıdır. Bu kalkan inceldiğinde yüksek enerjili UV ışınları DNA hasarlarına, cilt kanserine, göz kataraktına ve fitoplanktonların ölümüne yol açar. A seçeneği doğrudan bu etkinin tıbbi ve biyolojik sonucudur.',
     skillTag: 'Bilimsel Çıkarım',
     cognitiveLevel: 'Atmosfer Kirliliği ve Sağlık',
-    theme: 'Ozon Tabakası ve UV Radyasyonu'
+    theme: 'Ozon Tabakası ve UV Radyasyonu',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -614,7 +676,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'CO2 bir sera gazıdır ve kızılötesi (ısı) ışınlarını soğurarak tutar. CO2 oranı daha yüksek olan II. fanus ısıyı daha fazla hapsedip ortam sıcaklığını yükseltmiş ve buzun daha hızlı erimesine sebep olmuştur. Bu deney sera gazlarının küresel ısınmadaki rolünü somut olarak ispatlar.',
     skillTag: 'Deney & Değişken Analizi',
     cognitiveLevel: 'Kontrollü Deney ve Sera Etkisi',
-    theme: 'Sera Gazları ve Küresel Isınma'
+    theme: 'Sera Gazları ve Küresel Isınma',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -633,7 +697,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Hiçbir hayvan havadaki serbest gaz halindeki azotu solunumla vücuduna bağlayamaz. Hayvanlar azotu yalnızca besin zincirinde bitkisel veya hayvansal proteinleri tüketerek organik yoldan alabilirler.",
     skillTag: "Döngü Şeması Analizi",
     cognitiveLevel: "Azot Fiksasyonu ve Canlılar",
-    theme: "Azot Döngüsü"
+    theme: "Azot Döngüsü",
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -652,7 +718,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Fosil yakıt artışı sera etkisi, küresel ısınma, okyanus asitlenmesi ve iklim krizine yol açar. Hava basıncının yok olması veya UV ışınlarının tamamen hapsolması gibi bir durum söz konusu değildir (UV ışınları ozon tabakası ile ilgilidir).",
     skillTag: "Neden-Sonuç İlişkisi",
     cognitiveLevel: "Karbon Ayak İzi ve İklim Değişimi",
-    theme: "Karbon Döngüsü ve Fosil Yakıtlar"
+    theme: "Karbon Döngüsü ve Fosil Yakıtlar",
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -671,7 +739,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Küresel ısınmayı durdurmanın ve sera gazlarını azaltmanın temel yolu fosil yakıt tüketimini bırakıp yenilenebilir temiz enerjilere geçmek ve yutak alan olan ormanları koruyup ağaçlandırma yapmaktır.",
     skillTag: "Çevre Politikaları Değerlendirmesi",
     cognitiveLevel: "Sera Gazları ve Çözüm Yolları",
-    theme: "Sera Etkisi ve İklim Krizi"
+    theme: "Sera Etkisi ve İklim Krizi",
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -690,7 +760,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Ozon tabakasının incelmesi UV radyasyonunun zararlı etkilerini (kanser, katarakt, plankton ölümleri, mutasyon) artırır. Ancak ozon tabakasının yerçekimi kuvvetiyle hiçbir ilgisi yoktur; yerçekimi Dünya'nın kütlesinden kaynaklanır.",
     skillTag: "Kritik Düşünme & Bilimsel Okuryazarlık",
     cognitiveLevel: "Ozon Tabakası ve UV Radyasyonu",
-    theme: "Ozon Tabakası ve CFC Gazları"
+    theme: "Ozon Tabakası ve CFC Gazları",
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -709,7 +781,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Şehirleşme ve betonlaşma toprağın geçirgenliğini yok eder. Yağan yağmur toprağa sızıp yeraltı sularını besleyemez; yüzeyden hızla akarak sele sebep olur, barajlar ve yeraltı su kaynakları kurur.",
     skillTag: "Ekolojik Sistem Etkileşimi",
     cognitiveLevel: "Su Döngüsü ve Kentleşme",
-    theme: "Su Döngüsü Dengesi"
+    theme: "Su Döngüsü Dengesi",
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   // Subtopic 4: Sürdürülebilir Kalkınma
@@ -729,7 +803,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Enerji verimliliği düşük araçlar daha fazla elektrik tüketir; bu elektriği üretmek için daha fazla fosil yakıt yakılır ve karbon ayak izi ile ekolojik ayak izi büyür. Diğer seçenekler ise ayak izini küçülten çevre dostu uygulamalardır.',
     skillTag: 'Günlük Yaşam Bağı',
     cognitiveLevel: 'Sürdürülebilirlik İlkeleri',
-    theme: 'Ekolojik Ayak İzi ve Tasarruf'
+    theme: 'Ekolojik Ayak İzi ve Tasarruf',
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -748,7 +824,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Bireysel motorlu araç kullanımı arttığında kişi başına düşen fosil yakıt tüketimi ve egzoz gazı salınımı katlanarak artar. İklim krizini önlemek için tam aksine toplu taşıma, raylı sistemler ve bisiklet kullanımı yaygınlaştırılmalıdır.',
     skillTag: 'Kavramsal Analiz',
     cognitiveLevel: 'Uluslararası Çevre Sözleşmeleri',
-    theme: 'İklim Eylemi ve Karbon Salınımı'
+    theme: 'İklim Eylemi ve Karbon Salınımı',
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -767,7 +845,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Grafik açıkça göstermektedir ki ekolojik ayak izimizi küçültecek adımlar (tasarruf, yenilenebilir enerji, döngüsel ekonomi) atılırsa tüketim Dünya\'nın biyolojik taşıma kapasitesinin altına indirilebilir ve kaynaklar gelecek nesillere yetecek hale gelir.',
     skillTag: 'Grafik ve Tablo Yorumlama',
     cognitiveLevel: 'Biyokapasite ve Tüketim Analizi',
-    theme: 'Gezegensel Sınırlar ve Ekolojik Ayak İzi'
+    theme: 'Gezegensel Sınırlar ve Ekolojik Ayak İzi',
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   },
 
   {
@@ -786,7 +866,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: 'Kompostlaştırma yalnızca biyolojik olarak parçalanabilen organik maddeler (sebze kabukları, yaprak, talaş vb.) için geçerlidir. Plastik malzemeler petrol türevi sentetik polimerler olup kompost mikroorganizmaları tarafından parçalanamaz ve toprağı zehirler.',
     skillTag: 'Günlük Yaşam Bağı',
     cognitiveLevel: 'Geri Dönüşüm ve Kompostlama',
-    theme: 'Sıfır Atık Projesi'
+    theme: 'Sıfır Atık Projesi',
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -805,7 +887,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Tek kullanımlık plastiklerin kullanılması petrol tüketimini ve çevre atığını katlar; bu da ekolojik ayak izini büyütür. Küçültmek için geri dönüştürülebilir, yeniden kullanılabilir mataralar ve bez çantalar tercih edilmelidir.",
     skillTag: "Sürdürülebilirlik Bilinci",
     cognitiveLevel: "Ekolojik ve Karbon Ayak İzi",
-    theme: "Ekolojik Ayak İzi Azaltma"
+    theme: "Ekolojik Ayak İzi Azaltma",
+    province: "Yalova ÖDM",
+    source: "Yalova ÖDM"
   },
 
   {
@@ -824,7 +908,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Geri dönüşüm ciddi enerji tasarrufu ve kaynak koruması sağlar ancak fabrikaların enerji harcamasını sıfıra indirip ürünleri maliyetsiz yapmaz. Geri dönüşüm toplama, ayıklama ve yeniden işleme adımlarında da planlı enerji kullanımı gerektirir.",
     skillTag: "Kaynak Verimliliği Analizi",
     cognitiveLevel: "Geri Dönüşümün Çevresel ve Ekonomik Getirisi",
-    theme: "Geri Dönüşüm ve Tasarruf"
+    theme: "Geri Dönüşüm ve Tasarruf",
+    province: "Bursa ÖDM",
+    source: "Bursa ÖDM"
   },
 
   {
@@ -843,7 +929,9 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Hiyerarşinin en tepesinde \"Önleme ve Azaltma\" yer alır. Alışverişte file/bez çanta kullanarak poşet almamak, atığın hiç ortaya çıkmamasını sağlar (Önleme). Kavanozu tekrar kullanmak \"Yeniden Kullanma\" (2. basamak), pet şişeyi kutuya atmak \"Geri Dönüşüm\" (3. basamak), biyogaz üretimi ise \"Geri Kazanım\" (4. basamak) örneğidir.",
     skillTag: "Atık Yönetim Prensipleri",
     cognitiveLevel: "Sıfır Atık Hiyerarşisi",
-    theme: "Sıfır Atık ve Kaynak Yönetimi"
+    theme: "Sıfır Atık ve Kaynak Yönetimi",
+    province: "Sivas ÖDM",
+    source: "Sivas ÖDM"
   },
 
   {
@@ -862,6 +950,8 @@ export const sebahattinEnerjiCevreQuestions: LgsQuestion[] = [
     explanation: "Kömürlü termik santrallerin yerini güneş ve rüzgâr gibi temiz yenilenebilir kaynakların alması; CO2 (karbon ayak izi) ve asit yağmurlarına neden olan SO2/NOx gaz salınımlarını büyük ölçüde düşürür, hava ve su kalitesini iyileştirir.",
     skillTag: "Gelecek Vizyonu ve Ekolojik Planlama",
     cognitiveLevel: "Temiz Enerjiye Geçişin Faydaları",
-    theme: "Sürdürülebilir Enerji Politikaları"
+    theme: "Sürdürülebilir Enerji Politikaları",
+    province: "Kahramanmaraş ÖDM",
+    source: "Kahramanmaraş ÖDM"
   }
 ];

@@ -541,7 +541,7 @@ export const AutomaticQuizPdfModal: React.FC<Props> = ({
                           <table className="w-full text-xs text-left">
                             <thead className="bg-slate-100 border-b border-slate-300 font-bold">
                               <tr>
-                                {q.visualData.tableHeaders?.map((th, i) => (
+                                {q.visualData.tableHeaders?.map((th: string, i: number) => (
                                   <th key={i} className="p-2 border-r border-slate-200 last:border-r-0">
                                     {th}
                                   </th>
@@ -549,9 +549,9 @@ export const AutomaticQuizPdfModal: React.FC<Props> = ({
                               </tr>
                             </thead>
                             <tbody>
-                              {q.visualData.tableRows?.map((tr, rIdx) => (
+                              {q.visualData.tableRows?.map((tr: any[], rIdx: number) => (
                                 <tr key={rIdx} className="border-b border-slate-200 last:border-b-0">
-                                  {tr.map((td, dIdx) => (
+                                  {tr.map((td: any, dIdx: number) => (
                                     <td key={dIdx} className="p-2 border-r border-slate-200 last:border-r-0 font-mono">
                                       {td}
                                     </td>

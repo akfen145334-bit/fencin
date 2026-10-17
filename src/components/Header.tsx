@@ -22,7 +22,8 @@ import {
   Search,
   PanelLeft,
   Globe,
-  ExternalLink
+  ExternalLink,
+  BarChart3
 } from 'lucide-react';
 import { getSpecificEbaLink } from '../utils/ebaLinks';
 
@@ -56,6 +57,8 @@ interface Props {
   onOpenQuizPdf?: () => void;
   onToggleSidebar?: () => void;
   isSidebarOpen?: boolean;
+  onOpenProgressDashboard?: () => void;
+  isProgressDashboardOpen?: boolean;
 }
 
 export const Header: React.FC<Props> = ({
@@ -79,7 +82,9 @@ export const Header: React.FC<Props> = ({
   onChangeTextSize,
   onOpenQuizPdf,
   onToggleSidebar,
-  isSidebarOpen
+  isSidebarOpen,
+  onOpenProgressDashboard,
+  isProgressDashboardOpen
 }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [unitDropdownOpen, setUnitDropdownOpen] = useState(false);
@@ -362,6 +367,22 @@ export const Header: React.FC<Props> = ({
                 </>
               )}
             </button>
+
+            {/* Öğrenci & Sınıf İlerleme Paneli */}
+            {onOpenProgressDashboard && (
+              <button
+                onClick={onOpenProgressDashboard}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer ${
+                  isProgressDashboardOpen
+                    ? 'bg-indigo-600 text-white ring-2 ring-indigo-400'
+                    : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200'
+                }`}
+                title="Öğrenci & Sınıf İlerleme ve Başarı Paneli"
+              >
+                <BarChart3 className="w-3.5 h-3.5 text-indigo-600" />
+                <span className="hidden md:inline">İlerleme Paneli</span>
+              </button>
+            )}
 
             {/* Tam Ekran */}
             <button

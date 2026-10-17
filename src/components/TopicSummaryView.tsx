@@ -178,7 +178,7 @@ export const TopicSummaryView: React.FC<Props> = ({
 
       {/* Structured Summary Sections */}
       <div className="space-y-6">
-        {subTopic.summarySections.map((sec, idx) => (
+        {(subTopic.summarySections || []).map((sec, idx) => (
           <div
             key={idx}
             className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xs"
@@ -195,7 +195,7 @@ export const TopicSummaryView: React.FC<Props> = ({
 
             {/* Paragraphs */}
             <div className="space-y-3.5 text-slate-700 text-sm sm:text-base leading-relaxed">
-              {sec.paragraphs.map((p, pIdx) => (
+              {(sec.paragraphs || []).map((p, pIdx) => (
                 <p key={pIdx}>{renderFormattedText(p)}</p>
               ))}
             </div>
@@ -251,7 +251,7 @@ export const TopicSummaryView: React.FC<Props> = ({
                         <tr key={rIdx} className="hover:bg-slate-50 transition-colors">
                           {row.map((cell, cIdx) => (
                             <td key={cIdx} className="p-3.5 leading-relaxed">
-                              {renderFormattedText(cell)}
+                              {renderFormattedText(String(cell))}
                             </td>
                           ))}
                         </tr>
@@ -315,7 +315,7 @@ export const TopicSummaryView: React.FC<Props> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {subTopic.bookActivities.map(act => {
+            {subTopic.bookActivities.map((act: any) => {
               const isRev = isQuestionRevealed(act.id);
               return (
                 <div

@@ -18,14 +18,21 @@ export interface LgsQuestion {
   graphicData?: any;
   experimentSetup?: any;
   type?: 'lgs' | string;
+  province?: string;
+  source?: string;
+  context?: string;
+  detailedExplanation?: string;
+  visualData?: any;
 }
 
 export interface TrueFalseQuestion {
   id: number;
-  statement: string;
+  statement?: string;
+  text?: string;
   isCorrect: boolean;
   explanation: string;
   subTopicId?: string;
+  sourceContext?: string;
 }
 
 export interface EvaluationQuestion {
@@ -48,6 +55,7 @@ export interface InteractiveBookItem {
   materials?: string[];
   steps?: string[];
   qrInfo?: any;
+  reinforcementData?: any;
 }
 
 export interface BookActivity {
@@ -69,7 +77,7 @@ export interface UnitEndQuestion {
   type?: string;
   title?: string;
   questionPrompt: string;
-  options: QuestionOption[];
+  options?: QuestionOption[];
   correctAnswer: string;
   detailedExplanation?: string;
   explanation?: string;
@@ -81,6 +89,7 @@ export interface SummarySection {
   paragraphs?: string[];
   keyPoints?: string[];
   examNote?: string;
+  scientistBox?: any;
   table?: {
     headers: string[];
     rows: (string | number)[][];
@@ -99,6 +108,9 @@ export interface SubTopic {
   trueFalseQuestions?: TrueFalseQuestion[];
   lgsQuestions?: LgsQuestion[];
   ebaUrl?: string;
+  glossary?: Array<{ term: string; definition: string }>;
+  bookActivities?: any[];
+  interactiveBookFlow?: any[];
 }
 
 export interface ColorTheme {

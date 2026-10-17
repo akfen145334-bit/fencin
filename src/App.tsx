@@ -17,14 +17,25 @@ import { MaarifWelcomeLandingView } from './components/MaarifWelcomeLandingView'
 import { AutomaticQuizPdfModal } from './components/AutomaticQuizPdfModal';
 import { CurriculumSidebar } from './components/CurriculumSidebar';
 import { QuickAccessEbaWidget } from './components/QuickAccessEbaWidget';
+import { StudentProgressDashboard } from './components/StudentProgressDashboard';
+import { CurriculumWeekNavigator } from './components/CurriculumWeekNavigator';
+import { AnnualCurriculumModal } from './components/AnnualCurriculumModal';
+import { getCurrentCalendarWeek, resolveWeeklyTopic } from './utils/annualScheduleUtils';
 
 export const App: React.FC = () => {
+  const currentCalendarWeek = getCurrentCalendarWeek();
+  const [selectedAcademicWeek, setSelectedAcademicWeek] = useState<number>(currentCalendarWeek);
+  const [isAnnualScheduleModalOpen, setIsAnnualScheduleModalOpen] = useState<boolean>(false);
   const [isLandingPage, setIsLandingPage] = useState<boolean>(true);
   const [currentGrade, setCurrentGrade] = useState<number>(5);
-  const [currentUnit, setCurrentUnit] = useState<Unit>(allUnits[0]);
-  const [currentSubTopic, setCurrentSubTopic] = useState<SubTopic>(allUnits[0].subTopics[0]);
+
+  // Initialize with current calendar week's topic
+  const initialResolved = resolveWeeklyTopic(5, currentCalendarWeek, allUnits);
+  const [currentUnit, setCurrentUnit] = useState<Unit>(initialResolved ? initialResolved.unit : allUnits[0]);
+  const [currentSubTopic, setCurrentSubTopic] = useState<SubTopic>(initialResolved ? initialResolved.subTopic : allUnits[0].subTopics[0]);
   const [activeView, setActiveView] = useState<AppView>('interactive-book');
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+  const [isProgressDashboardOpen, setIsProgressDashboardOpen] = useState<boolean>(false);
 
   // Smartboard Interactive Tool States
   const [isDrawingActive, setIsDrawingActive] = useState(false);
@@ -56,22 +67,26 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleSelectGrade = (grade: number) => {
+  const handleOpenWeekTopic = (grade: number, weekNumber: number) => {
+    setSelectedAcademicWeek(weekNumber);
     setCurrentGrade(grade);
-    // Seçilen sınıfa ait üniteleri bul ve ilk üniteyi aktif et
-    const firstUnitForGrade = allUnits.find(u => (u.grade || 5) === grade);
-    if (firstUnitForGrade) {
-      setCurrentUnit(firstUnitForGrade);
-      setCurrentSubTopic(firstUnitForGrade.subTopics[0]);
-      const isSystems = grade === 8 || firstUnitForGrade.id === 'g7-unit-3' || firstUnitForGrade.id === 'g6-unit-3' || (firstUnitForGrade.title && firstUnitForGrade.title.toLowerCase().includes('sistem'));
+    const resolved = resolveWeeklyTopic(grade, weekNumber, allUnits);
+    if (resolved) {
+      setCurrentUnit(resolved.unit);
+      setCurrentSubTopic(resolved.subTopic);
+      const isSystems = grade === 8 || resolved.unit.id === 'g7-unit-3' || resolved.unit.id === 'g6-unit-3' || (resolved.unit.title && resolved.unit.title.toLowerCase().includes('sistem'));
       if (isSystems && activeView === 'interactive-book') {
         setActiveView('summary');
-      } else if (activeView === 'unit-end-20' && (!firstUnitForGrade.unitEnd20Questions || firstUnitForGrade.unitEnd20Questions.length === 0)) {
+      } else if (activeView === 'unit-end-20' && (!resolved.unit.unitEnd20Questions || resolved.unit.unitEnd20Questions.length === 0)) {
         setActiveView(isSystems ? 'summary' : 'interactive-book');
       }
     }
-    // Sınıf seçilince ana girişten ders ekranına geçiş
     setIsLandingPage(false);
+  };
+
+  const handleSelectGrade = (grade: number) => {
+    // Automatically open the current calendar week's topic for this grade level!
+    handleOpenWeekTopic(grade, selectedAcademicWeek);
   };
 
   const getTextSizeClass = () => {
@@ -94,6 +109,9 @@ export const App: React.FC = () => {
           <MaarifWelcomeLandingView
             currentGrade={currentGrade}
             onSelectGrade={handleSelectGrade}
+            onOpenProgressDashboard={() => setIsProgressDashboardOpen(true)}
+            onOpenWeekTopic={handleOpenWeekTopic}
+            onOpenAnnualScheduleModal={() => setIsAnnualScheduleModalOpen(true)}
           />
         </main>
       ) : (
@@ -121,6 +139,19 @@ export const App: React.FC = () => {
             onOpenQuizPdf={() => setIsQuizPdfModalOpen(true)}
             onToggleSidebar={() => setIsSidebarOpen(prev => !prev)}
             isSidebarOpen={isSidebarOpen}
+            onOpenProgressDashboard={() => setIsProgressDashboardOpen(true)}
+            isProgressDashboardOpen={isProgressDashboardOpen}
+          />
+
+          {/* HAFTALIK MÜFREDAT TAKVİMİ NAVİGASYON ŞERİDİ (5, 6, 7, 8. Sınıflar, Önceki/Sonraki Hafta Tuşları) */}
+          <CurriculumWeekNavigator
+            currentGrade={currentGrade}
+            selectedWeek={selectedAcademicWeek}
+            onSelectWeek={week => setSelectedAcademicWeek(week)}
+            onSelectGrade={handleSelectGrade}
+            onOpenTopic={handleOpenWeekTopic}
+            onOpenAnnualScheduleModal={() => setIsAnnualScheduleModalOpen(true)}
+            units={allUnits}
           />
 
           {/* Temel Dinî Bilgiler Layout: Yanda Konu ve Alt Konular (Sadece seçilen sınıfa ait) + İçerik Alanı */}
@@ -139,6 +170,7 @@ export const App: React.FC = () => {
               onSelectGrade={handleSelectGrade}
               isOpen={isSidebarOpen}
               onToggleOpen={() => setIsSidebarOpen(prev => !prev)}
+              onOpenProgressDashboard={() => setIsProgressDashboardOpen(true)}
             />
 
             {/* Main Content Area - Tamamen aşağı kaydırılabilir akıcı sayfa */}
@@ -263,6 +295,45 @@ export const App: React.FC = () => {
         currentGrade={currentGrade}
         currentUnit={currentUnit}
         currentSubTopic={currentSubTopic}
+      />
+
+      {/* Öğrenci & Sınıf İlerleme Takip Paneli (Student Progress Dashboard) Modal */}
+      {isProgressDashboardOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs overflow-y-auto p-3 sm:p-6 flex items-start justify-center">
+          <div className="max-w-7xl w-full my-4">
+            <StudentProgressDashboard
+              units={allUnits}
+              currentGrade={currentGrade}
+              onSelectUnit={unit => {
+                handleSelectUnit(unit);
+                setIsProgressDashboardOpen(false);
+                setIsLandingPage(false);
+              }}
+              onSelectSubTopic={(sub, unit) => {
+                setCurrentUnit(unit);
+                setCurrentSubTopic(sub);
+                setIsProgressDashboardOpen(false);
+                setIsLandingPage(false);
+              }}
+              onClose={() => setIsProgressDashboardOpen(false)}
+              onOpenQuizPdfModal={() => {
+                setIsProgressDashboardOpen(false);
+                setIsQuizPdfModalOpen(true);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* 2026-2027 MEB Maarif Modeli Yıllık Müfredat Çerçeve Planı (37 Hafta) Modal */}
+      <AnnualCurriculumModal
+        isOpen={isAnnualScheduleModalOpen}
+        onClose={() => setIsAnnualScheduleModalOpen(false)}
+        currentGrade={currentGrade}
+        onSelectGrade={setCurrentGrade}
+        onSelectAndOpenWeek={handleOpenWeekTopic}
+        selectedWeek={selectedAcademicWeek}
+        units={allUnits}
       />
 
       {/* Akıllı Tahta Alt Bilgi Alanı - Temel Dinî Bilgiler Teması */}
